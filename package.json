@@ -1,0 +1,11 @@
+{
+  "name": "timeresolver",
+  "version": "1.0.0",
+  "description": "Will convert two strings of times into a comparison to determine which segment is faster.  It will also label the splits if you choose.",
+  "main": "timeResolver.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
