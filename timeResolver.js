@@ -1,65 +1,4 @@
-// function convertTimesToSeconds(times) {
-//     return times.map(time => {
-//         let [minutes, rest] = time.split(":");
-//         let [seconds, milliseconds] = rest.split(".");
-        
-//         let totalSeconds = parseInt(minutes, 10) * 60;   // Convert minutes to seconds
-//         totalSeconds += parseInt(seconds, 10);           // Add seconds
-//         totalSeconds += parseInt(milliseconds, 10) / 1000; // Convert milliseconds to seconds and add them
 
-//         return Math.floor(totalSeconds);  // Round down to the nearest second
-//     });
-// }
-
-// function compareTimes(runner01, runner02, names) {
-//     if(runner01.length !== runner02.length) {
-//         throw new Error(`Runner01 and Runner02 sizes differ by ${Math.abs(runner01.length - runner02.length)} items.`);
-//     }
-
-//     if(names === undefined) {
-//         names = runner01.map((_, index) => `Segment ${index + 1}`);
-//     } else if(runner01.length !== names.length) {
-//         throw new Error(`Runner01 and Names sizes differ by ${Math.abs(runner01.length - names.length)} items.`);
-//     }
-
-//     let results = [];
-//     for (let i = 0; i < runner01.length; i++) {
-//         let segmentTimeRunner01 = i === 0 ? runner01[i] : runner01[i] - runner01[i - 1];
-//         let segmentTimeRunner02 = i === 0 ? runner02[i] : runner02[i] - runner02[i - 1];
-
-//         let difference = segmentTimeRunner01 - segmentTimeRunner02;  // Segment time difference
-
-//         let result = {
-//             name: names[i],
-//             runner01: segmentTimeRunner01,
-//             runner02: segmentTimeRunner02,
-//             difference: difference
-//         };
-
-//         results.push(result);
-//     }
-
-//     return results;
-// }
-
-
-
-// function convertStringToArray(timesString) {
-//     return timesString.split(" ").filter(time => time.trim() !== '');  // Filter out any empty strings
-// }
-
-// function processAndCompareTimes(runner01TimesString, runner02TimesString, names) {
-//     // Convert strings to arrays
-//     let runner01TimesArray = convertStringToArray(runner01TimesString);
-//     let runner02TimesArray = convertStringToArray(runner02TimesString);
-
-//     // Convert arrays of times to arrays of seconds
-//     let runner01SecondsArray = convertTimesToSeconds(runner01TimesArray);
-//     let runner02SecondsArray = convertTimesToSeconds(runner02TimesArray);
-
-//     // Compare the times
-//     return compareTimes(runner01SecondsArray, runner02SecondsArray, names);
-// }
 
 function convertTimeToSeconds(time) {
     console.log(time)
@@ -156,8 +95,12 @@ smb2WR="0:48.5 1:20.5 1:44.8 2:31.9 3:15.7 4:10.9 4:53.4 5:39.8 6:35.5 8:11.4"
 smb2Names="1-1, 1-2, 1-3, 4-1, 4-2, 6-1, 6-2, 6-3, 7-1, 7-2"
 
 ActWR="0:53.20 2:14.20 3:18.10 5:11.10 6:41.30 8:29.30 10:29.40 11:40.30 12:52.00 14:14.40 16:09.40 17:33.50 21:42.60"
-ActPB="0:59.92 2:29.42 3:41.12 6:15.35 8:03.66 10:39.44 13:11.05 14:36.55 16:00.27 17:45.98 20:10.99 22:16.07 28:29.61"
+ActPB="0:54.24 2:22.64 3:28.20 5:24.73 7:01.13 9:01.94 11:18.62 12:36.30 13:53.88 15:23.74 17:44.26 19:27.61 24:16.55"
+
+MegaManWR="2:07.90 4:33.60 7:14.30 9:24.80 11:42.50 14:12.60 16:28.70 19:00.40 22:01.90 24:53.40 27:47.0 31:30.00"
+MegaManPB="2:56.39 5:59.52 9:27.28 12:15.54 15:11.54 18:32.28 24:56.62 32:25.56 36:30.25 43:26.60 49:50.13 58:34.50"
 
 ActNames="Fillmore 1, Fillmore 2, Bloodpool 1, Bloodpool 2, Kassandora 1, Kassandora 2, Aitos 1, Aitos 2, Marahna 1, Marahna 2, Northwall 1, Northwall 2, Death Heim"
+MegaManNames="Cement, Fire, Gravity, Hornet, Gem, Water, Plug, Tornado, Wily 1, Wily 2, Wily 3, Wily 4"
 console.log('test')
-console.log(processAndCompareTimes(ActPB, ActWR, ActNames))
+console.log(processAndCompareTimes(MegaManPB, MegaManWR, MegaManNames))
