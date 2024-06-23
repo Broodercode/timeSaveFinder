@@ -1,12 +1,29 @@
 
 
+// function convertTimeToSeconds(time) {
+//     console.log(time)
+//     const [minutes, rest] = time.split(":");
+//     const [seconds, milliseconds = '0'] = rest.split(".");
+//     // Convert time to hundredths of a second
+//     return Math.round((parseInt(minutes, 10) * 60 + parseInt(seconds, 10) + parseInt(milliseconds, 10) / 1000) * 100);
+// }
+
 function convertTimeToSeconds(time) {
-    console.log(time)
-    const [minutes, rest] = time.split(":");
+    console.log(time);
+    const segments = time.split(":");
+    let hours = 0, minutes = 0, rest = segments[0];
+    
+    if (segments.length === 3) {
+        [hours, minutes, rest] = segments;
+    } else if (segments.length === 2) {
+        [minutes, rest] = segments;
+    }
+
     const [seconds, milliseconds = '0'] = rest.split(".");
     // Convert time to hundredths of a second
-    return Math.round((parseInt(minutes, 10) * 60 + parseInt(seconds, 10) + parseInt(milliseconds, 10) / 1000) * 100);
+    return Math.round((parseInt(hours, 10) * 3600 + parseInt(minutes, 10) * 60 + parseInt(seconds, 10) + parseInt(milliseconds, 10) / 1000) * 100);
 }
+
 
 function secondsToStandardTime(seconds) {
     const hours = Math.floor(seconds / 3600);
@@ -29,6 +46,8 @@ function secondsToStandardTime(seconds) {
 }
 
 function compareTimes(runner01, runner02, names = []) {
+    console.log('compare times reached')
+    console.log(runner01.length, runner02.length, names.length)
     if (runner01.length !== runner02.length) {
         throw new Error(`Runner01 and Runner02 sizes differ by ${Math.abs(runner01.length - runner02.length)} items.`);
     }
@@ -72,6 +91,7 @@ function processAndCompareTimes(runner01TimesString, runner02TimesString, namesS
     console.log(runner01SecondsArray)
     console.log(runner02TimesArray)
     const runner02SecondsArray = runner02TimesArray.map(convertTimeToSeconds);
+    console.log(runner02SecondsArray)
 
     // Compare the times
     return compareTimes(runner01SecondsArray, runner02SecondsArray, namesArray);
@@ -98,9 +118,18 @@ ActWR="0:53.20 2:14.20 3:18.10 5:11.10 6:41.30 8:29.30 10:29.40 11:40.30 12:52.0
 ActPB="0:54.24 2:22.64 3:28.20 5:24.73 7:01.13 9:01.94 11:18.62 12:36.30 13:53.88 15:23.74 17:44.26 19:27.61 24:16.55"
 
 MegaManWR="2:07.90 4:33.60 7:14.30 9:24.80 11:42.50 14:12.60 16:28.70 19:00.40 22:01.90 24:53.40 27:47.0 31:30.00"
-MegaManPB="2:15.25 5:03.52 7:57.76 10:23.05 13:23.56 16:14.35 19:02.05 21:56.67 25:32.56 29:39.48 34:14.01 39:52.44"
+MegaManPB="2:12.93 5:03.79 7:55.69 10:20.87 12:56.70 15:42.14 18:11.80 20:59.63 24:35.44 28:05.45 31:22.28 36:20.40"
+
+BoF1WR="57:17.00, 121:03.00, 178:29.00, 227:39.00, 307:25.00"
+BoF1WRmax="10:49.00, 19:01.00, 37:19.00, 46:29.00, 57:17.00, 76:38.00, 81:30.00, 98:56.00, 107:42.00, 121:03.00, 127:32.00, 135:00.00, 141:32.00, 149:35.00, 153:15.00, 160:28.00, 167:37.00, 178:29.00, 183:39.00, 188:29.00, 193:02.00, 200:09.00, 217:39.00, 237:33.00, 249:42.00, 263:07.00, 274:57.00, 283:11.00, 295:55.00, 301:24.00, 307:25.00"
+
+BoF1PBMax = "12:29.21, 21:22.01, 40:32.10, 51:04.95, 1:11:32.11, 1:43:12.77, 1:59:37.15, 2:26:02.96, 2:38:48.00, 2:59:46.97, 3:07:57.65, 3:19:09.49, 3:49:08.72, 4:01:02.00, 4:08:04.93, 4:19:23.46, 4:28:47.33, 4:44:21.23, 4:51:31.00, 4:58:03.00, 5:03:48.00, 5:28:10.68, 5:52:47.91, 6:24:55.19, 6:47:32.00, 7:13:19.27, 7:30:15.63, 7:43:52.10, 8:04:19.09, 8:13:38.00, 8:24:18.85";
+
+BoF1NamesMax="Frog, Knight, Wizard, General, Wisp, Gremlin, Talon, Eyespy, Cloud, Squid, Octo, Morteo, Toad, Grimfowl, SlimeX, 3 Ghosts, Pincher, Bain, Niro's House, Gold FLy, FlowerX, Horn Toad, Mothra, Mote, Cerl, Fire, Zog, Sara, Goda, Jade, Goddess"
+BoF1PB="61:32.11, 179:46.97, 284:21.23, 384:55.19, 504:18.85"
+BoF1Names="Wisp, Squid, Bane, Mote, Goddess"
 
 ActNames="Fillmore 1, Fillmore 2, Bloodpool 1, Bloodpool 2, Kassandora 1, Kassandora 2, Aitos 1, Aitos 2, Marahna 1, Marahna 2, Northwall 1, Northwall 2, Death Heim"
 MegaManNames="Cement, Fire, Gravity, Hornet, Gem, Water, Plug, Tornado, Wily 1, Wily 2, Wily 3, Wily 4"
 console.log('test')
-console.log(processAndCompareTimes(MegaManPB, MegaManWR, MegaManNames))
+console.log(processAndCompareTimes(BoF1PBMax, BoF1WRmax, BoF1NamesMax))
