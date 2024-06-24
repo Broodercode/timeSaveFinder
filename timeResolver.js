@@ -63,14 +63,22 @@ function compareTimes(runner01, runner02, names = []) {
         const segmentTimeRunner01 = i === 0 ? time : time - runner01[i - 1];
         const segmentTimeRunner02 = i === 0 ? runner02[i] : runner02[i] - runner02[i - 1];
         const difference = segmentTimeRunner01 - segmentTimeRunner02;
-
+        console.log(segmentTimeRunner01, segmentTimeRunner02, difference)
+        if (difference > 0) {
         return {
             name: names[i] || `Segment ${i + 1}`, // If a name doesn't exist, auto-generate one
             position: i + 1,
             runner01: secondsToStandardTime(segmentTimeRunner01 / 100),
             runner02: secondsToStandardTime(segmentTimeRunner02 / 100),
             difference: secondsToStandardTime(Math.abs(difference) / 100)
-        };
+        }} else {
+            return {
+                name: names[i] || `Segment ${i + 1}`, // If a name doesn't exist, auto-generate one
+                position: i + 1,
+                runner01: secondsToStandardTime(segmentTimeRunner01 / 100),
+                runner02: secondsToStandardTime(segmentTimeRunner02 / 100),
+                difference: `-` + secondsToStandardTime(Math.abs(difference) / 100)
+            }}
     });
 }
 
@@ -121,7 +129,10 @@ MegaManWR="2:07.90 4:33.60 7:14.30 9:24.80 11:42.50 14:12.60 16:28.70 19:00.40 2
 MegaManPB="2:12.93 5:03.79 7:55.69 10:20.87 12:56.70 15:42.14 18:11.80 20:59.63 24:35.44 28:05.45 31:22.28 36:20.40"
 
 BoF1WR="57:17.00, 121:03.00, 178:29.00, 227:39.00, 307:25.00"
-BoF1WRmax="10:49.00, 19:01.00, 37:19.00, 46:29.00, 57:17.00, 76:38.00, 81:30.00, 98:56.00, 107:42.00, 121:03.00, 127:32.00, 135:00.00, 141:32.00, 149:35.00, 153:15.00, 160:28.00, 167:37.00, 178:29.00, 183:39.00, 188:29.00, 193:02.00, 200:09.00, 217:39.00, 237:33.00, 249:42.00, 263:07.00, 274:57.00, 283:11.00, 295:55.00, 301:24.00, 307:25.00"
+BoF1WRMax="10:49.00, 19:01.00, 37:19.00, 46:29.00, 57:17.00, 76:38.00, 81:30.00, 98:56.00, 107:42.00, 121:03.00, 127:32.00, 135:00.00, 141:32.00, 149:35.00, 153:15.00, 160:28.00, 167:37.00, 178:29.00, 183:39.00, 188:29.00, 193:02.00, 200:09.00, 217:39.00, 237:33.00, 249:42.00, 263:07.00, 274:57.00, 283:11.00, 295:55.00, 301:24.00, 307:25.00"
+
+BoF1ThroggMax = "11:10.36, 21:44.97, 42:37.50, 55:08.73, 1:12:51.74, 1:55:56.89, 2:07:03.69, 2:44:01.43, 2:59:09.48, 3:20:59.97, 3:28:45.19, 3:38:31.62, 3:54:30.18, 4:14:03.74, 4:20:09.51, 4:37:53.69, 4:48:47.18, 5:05:52.61, 5:17:29.29, 5:23:48.93, 5:26:37.73, 5:37:30.38, 6:08:44.58, 6:36:51.56, 6:54:13.75, 7:11:37.91, 7:31:33.79, 7:42:34.50, 8:01:51.77, 8:10:47.59, 8:18:46.22"
+
 
 BoF1PBMax = "12:29.21, 21:22.01, 40:32.10, 51:04.95, 1:11:32.11, 1:43:12.77, 1:59:37.15, 2:26:02.96, 2:38:48.00, 2:59:46.97, 3:07:57.65, 3:19:09.49, 3:49:08.72, 4:01:02.00, 4:08:04.93, 4:19:23.46, 4:28:47.33, 4:44:21.23, 4:51:31.00, 4:58:03.00, 5:03:48.00, 5:28:10.68, 5:52:47.91, 6:24:55.19, 6:47:32.00, 7:13:19.27, 7:30:15.63, 7:43:52.10, 8:04:19.09, 8:13:38.00, 8:24:18.85";
 
@@ -132,4 +143,4 @@ BoF1Names="Wisp, Squid, Bane, Mote, Goddess"
 ActNames="Fillmore 1, Fillmore 2, Bloodpool 1, Bloodpool 2, Kassandora 1, Kassandora 2, Aitos 1, Aitos 2, Marahna 1, Marahna 2, Northwall 1, Northwall 2, Death Heim"
 MegaManNames="Cement, Fire, Gravity, Hornet, Gem, Water, Plug, Tornado, Wily 1, Wily 2, Wily 3, Wily 4"
 console.log('test')
-console.log(processAndCompareTimes(BoF1PBMax, BoF1WRmax, BoF1NamesMax))
+console.log(processAndCompareTimes(BoF1ThroggMax, BoF1WRMax, BoF1NamesMax))
